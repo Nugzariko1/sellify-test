@@ -11,3 +11,12 @@ export interface CategoryResponse {
   updatedAt: string;
   iconUrl?: string;
 }
+
+export interface CreateCategoryRequest {
+  name: string;
+  description: string;
+  slug: string;
+  parentId?: string | null;
+  isActive: boolean;
+  iconFile?: File | null;
+}
