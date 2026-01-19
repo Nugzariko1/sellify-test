@@ -1,33 +1,86 @@
 <div class="modal-overlay">
   <div class="modal-content">
     <div class="login-container">
-      <form class="login-form">
-        <h2>Welcome Back</h2>
-        <p>Please enter your details.</p>
+      <form [formGroup]="createCategoryForm" class="custom-form">
+        <header>
+          <h2>Create Account</h2>
+          <p>Join us today by filling out the details below.</p>
+        </header>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">First Name</label>
+            <input
+              id="name"
+              formControlName="name"
+              placeholder="enter category name"
+              [class.error]="
+                createCategoryForm.get('name')?.invalid && createCategoryForm.get('name')?.touched
+              "
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input
+              id="description"
+              formControlName="description"
+              placeholder="enter description"
+              [class.error]="
+                createCategoryForm.get('description')?.invalid &&
+                createCategoryForm.get('description')?.touched
+              "
+            />
+          </div>
+        </div>
 
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="slug">Email</label>
           <input
-            id="email"
-            type="email"
-            formControlName="email"
-            placeholder="Enter your email"
-            [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+            id="slug"
+            formControlName="slug"
+            placeholder="enter slug"
+            [class.error]="
+              createCategoryForm.get('slug')?.invalid && createCategoryForm.get('slug')?.touched
+            "
           />
         </div>
 
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="parentId">Phone Number</label>
           <input
-            id="password"
-            type="password"
-            formControlName="password"
-            placeholder="enter your password"
-            [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            id="parentId"
+            formControlName="parentId"
+            placeholder="enter parentId"
+            [class.error]="
+              createCategoryForm.get('parentId')?.invalid &&
+              createCategoryForm.get('parentId')?.touched
+            "
           />
         </div>
 
-        <button class="confirm-modal-btn">Confirm</button>
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="isActive" formControlName="isActive" />
+          <label for="isActive">Is Active</label>
+        </div>
+
+        <div class="form-group">
+          <label for="parentId">Phone Number</label>
+          <input
+            id="parentId"
+            type="file"
+            formControlName="parentId"
+            placeholder="enter parentId"
+            [class.error]="
+              createCategoryForm.get('parentId')?.invalid &&
+              createCategoryForm.get('parentId')?.touched
+            "
+          />
+        </div>
+
+        <button type="submit" [disabled]="createCategoryForm.invalid" class="confirm-modal-btn">
+          Confirm
+        </button>
       </form>
     </div>
     <button (click)="closeModal()" class="close-modal-btn">Close</button>
