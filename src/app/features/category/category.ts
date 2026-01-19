@@ -3,16 +3,18 @@ import { Component, signal } from '@angular/core';
 import { CategoryService } from '../../shared/services/category/category.service';
 import { ApiResponse } from '../../shared/types/api.response';
 import { CategoryResponse } from '../../shared/types/category.models';
+import { CategoryModal } from '../../shared/components/category-modal/category-modal';
 
 @Component({
   selector: 'app-category',
-  imports: [CommonModule],
+  imports: [CommonModule, CategoryModal],
   templateUrl: './category.html',
   styleUrl: './category.scss',
 })
 export class Category {
   categories = signal<ApiResponse<CategoryResponse[]>>({ data: [], message: '', success: false });
-  apiUrl: string = 'https://localhost:7170/api/categories';
+  apiUrl: string =
+    'https://sellify-retail-cpbgdhhug0cafre0.italynorth-01.azurewebsites.net/api/categories';
   constructor(private categoryService: CategoryService) {
     this.getCategories();
   }
@@ -27,5 +29,10 @@ export class Category {
         console.error('Failed to fetch categories:', error);
       },
     });
+  }
+
+  openModal() {
+    const modalCont: any = document.querySelector('.modal-container')!;
+    modalCont.style.display = 'block';
   }
 }

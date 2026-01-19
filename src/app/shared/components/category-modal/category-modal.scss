@@ -1,0 +1,56 @@
+body {
+  position: relative;
+}
+
+.modal-overlay {
+  // რადგან ბადიზე გაქვს relative, absolute აქაც იმუშავებს /
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+
+  // ბლარის ეფექტი /
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  // რომ ფონი ოდნავ დაბნელდეს და ბლარი გამოჩნდეს /
+  background-color: rgba(0, 0, 0, 0.2);
+
+  // ცენტრირება /
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: white;
+  width: 600px;
+  height: 400px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative; // რომ დანარჩენზე ზემოთ იყოს
+  z-index: 1000;
+
+  button {
+    border: none;
+    background: none;
+    background-color: #ff0000;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    width: 20%;
+  }
+
+  .confirm-modal-btn {
+    background-color: #007bff;
+  }
+}
