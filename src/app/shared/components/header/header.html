@@ -1,0 +1,26 @@
+<header class="main-header">
+  <div class="logo">
+    <a routerLink="/">MyApp</a>
+  </div>
+
+  <nav class="nav-links">
+    <ul>
+      <li>
+        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a routerLink="/features" routerLinkActive="active">Features</a>
+      </li>
+      <li>
+        <a routerLink="/categories" routerLinkActive="active">Categories</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="auth-buttons">
+    <a routerLink="login" routerLinkActive="active" class="btn btn-login">Log In</a>
+    <a routerLink="signup" routerLinkActive="active" class="btn btn-signup">Sign Up</a>
+  </div>
+</header>

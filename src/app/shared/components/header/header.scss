@@ -1,0 +1,125 @@
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    a {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        cursor: pointer;
+        color: #007bff;
+      }
+    }
+  }
+
+  .nav-links {
+    ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        a {
+          color: #666;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s ease;
+          position: relative;
+
+          &:hover {
+            cursor: pointer;
+            color: #007bff;
+          }
+
+          &.active {
+            color: #007bff;
+
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: -0.5rem;
+              left: 0;
+              width: 100%;
+              height: 2px;
+              background-color: #007bff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .auth-buttons {
+    display: flex;
+    gap: 1rem;
+
+    .btn {
+      padding: 0.5rem 1.5rem;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &.btn-login {
+        color: #007bff;
+        border: 1px solid #007bff;
+        background-color: transparent;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #007bff;
+          color: #fff;
+        }
+      }
+
+      &.btn-signup {
+        color: #fff;
+        background-color: #007bff;
+        border: 1px solid #007bff;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #0056b3;
+          border-color: #0056b3;
+        }
+      }
+    }
+  }
+
+  // Responsive
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    padding: 1rem;
+
+    .nav-links {
+      order: 3;
+      width: 100%;
+      margin-top: 1rem;
+
+      ul {
+        justify-content: center;
+        gap: 1.5rem;
+      }
+    }
+
+    .auth-buttons {
+      gap: 0.5rem;
+
+      .btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

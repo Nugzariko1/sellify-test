@@ -1,0 +1,43 @@
+<section class="category-section">
+  <header class="section-header">
+    <h2>Explore Categories</h2>
+    <p>Find the best products across our curated collections</p>
+  </header>
+
+  @if (!categories().success && !categories().message) {
+    <div class="loading-spinner">Loading categories...</div>
+  } @else if (!categories().success && categories().message) {
+    <div class="error-box">
+      {{ categories().message || 'Failed to load categories.' }}
+    </div>
+  }
+
+  <div class="category-grid">
+    @for (cat of categories().data; track cat.id) {
+      <div class="category-card" [class.disabled]="!cat.isActive">
+        <div class="image-wrapper">
+          @if (cat.iconUrl) {
+            <img [src]="cat.iconUrl" [alt]="cat.name" loading="lazy" />
+          } @else {
+            <div class="placeholder-icon">{{ cat.name.charAt(0) }}</div>
+          }
+
+          @if (cat.hasSubCategories) {
+            <span class="sub-badge">Has Subcategories</span>
+          }
+        </div>
+
+        <div class="category-info">
+          <h3>{{ cat.name }}</h3>
+          @if (cat.description) {
+            <p>{{ cat.description }}</p>
+          }
+        </div>
+      </div>
+    } @empty {
+      @if (categories().success) {
+        <p class="empty-msg">No categories available at the moment.</p>
+      }
+    }
+  </div>
+</section>
