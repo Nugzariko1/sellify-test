@@ -43,4 +43,11 @@ export class CategoryService {
 
     return this.httpClient.post<ApiResponse<CategoryResponse>>(apiUrl, formData, { headers });
   }
+
+  deleteCategory(apiUrl: string) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    });
+    return this.httpClient.delete(apiUrl, { headers });
+  }
 }

@@ -1,13 +1,13 @@
 <div class="modal-overlay">
   <div class="modal-content">
     <app-category-form
-      [title]="categoryData() ? 'Edit Category' : 'Create Category'"
+      [title]="'Update category'"
       [buttonText]="'Confirm'"
       [initialData]="categoryData()"
       (submitted)="handleFormSubmit($event)"
     ></app-category-form>
 
     <button (click)="closeModal()" class="close-modal-btn">Cancel</button>
-    <h1>Update</h1>
+    <button (click)="deleteCategory(categoryData()?.id)" class="category-delete-btn">Delete</button>
   </div>
 </div>

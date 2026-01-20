@@ -13,6 +13,7 @@ import { CategoryUpdateModal } from '../../shared/components/category/category-u
   styleUrl: './category.scss',
 })
 export class Category {
+  selectedCategory = signal<CategoryResponse | null>(null);
   categories = signal<ApiResponse<CategoryResponse[]>>({ data: [], message: '', success: false });
   apiUrl: string =
     'https://sellify-retail-cpbgdhhug0cafre0.italynorth-01.azurewebsites.net/api/categories';
@@ -37,8 +38,9 @@ export class Category {
     modalCont.style.display = 'block';
   }
 
-  openUpdateModal() {
+  openUpdateModal(cat: CategoryResponse) {
     const modalCont: any = document.querySelector('.update-modal-container')!;
     modalCont.style.display = 'block';
+    this.selectedCategory.set(cat);
   }
 }
