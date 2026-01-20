@@ -17,7 +17,7 @@ export class CategoryUpdateModal {
 
   apiUrl = 'https://sellify-retail-cpbgdhhug0cafre0.italynorth-01.azurewebsites.net/api/categories';
 
-  onDeleteSuccess = output<void>();
+  onSuccessEmit = output<void>();
 
   closeModal() {
     const modalCont: any = document.querySelector('.update-modal-container')!;
@@ -33,8 +33,8 @@ export class CategoryUpdateModal {
       next: () => {
         console.log('Category deleted successfully');
         const modalCont: any = document.querySelector('.update-modal-container')!;
-        modalCont.style.display = 'none';
-        this.onDeleteSuccess.emit();
+        this.closeModal();
+        this.onSuccessEmit.emit();
       },
       error: (err) => {
         console.error('Delete failed:', err);
@@ -55,12 +55,15 @@ export class CategoryUpdateModal {
       iconFile: file, // Use the file passed from the child
     };
 
-    this.categoryService.createCategory(this.apiUrl, request).subscribe({
-      next: (response) => {
-        console.log('Success:', response);
-        this.closeModal();
-      },
-      error: (err) => console.error('Failed:', err),
-    });
+    this.categoryService
+      .updateCategory(`${this.apiUrl}/${this.categoryData()?.id}`, request)
+      .subscribe({
+        next: (response) => {
+          console.log('Success:', response);
+          this.closeModal();
+          this.onSuccessEmit.emit();
+        },
+        error: (err) => console.error('Failed:', err),
+      });
   }
 }

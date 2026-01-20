@@ -5,7 +5,7 @@
   <div class="update-modal-container">
     <app-category-update-modal
       [categoryData]="selectedCategory()"
-      (onDeleteSuccess)="getCategories()"
+      (onSuccessEmit)="getCategories()"
     ></app-category-update-modal>
   </div>
   <header class="section-header">

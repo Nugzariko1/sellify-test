@@ -20,6 +20,38 @@ export class CategoryService {
   ): Observable<ApiResponse<CategoryResponse>> {
     const formData = new FormData();
 
+    this.appendHelper(request, formData);
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    });
+
+    return this.httpClient.post<ApiResponse<CategoryResponse>>(apiUrl, formData, { headers });
+  }
+
+  updateCategory(
+    apiUrl: string,
+    request: CreateCategoryRequest,
+  ): Observable<ApiResponse<CategoryResponse>> {
+    const formData = new FormData();
+
+    this.appendHelper(request, formData);
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    });
+
+    return this.httpClient.put<ApiResponse<CategoryResponse>>(apiUrl, formData, { headers });
+  }
+
+  deleteCategory(apiUrl: string) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    });
+    return this.httpClient.delete(apiUrl, { headers });
+  }
+
+  private appendHelper(request: CreateCategoryRequest, formData: FormData): void {
     // Append text fields
     formData.append('name', request.name);
     formData.append('description', request.description || '');
@@ -34,20 +66,5 @@ export class CategoryService {
     if (request.iconFile) {
       formData.append('iconFile', request.iconFile);
     }
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      // Do NOT set Content-Type: multipart/form-data manually.
-      // The browser will do it automatically with the correct "boundary".
-    });
-
-    return this.httpClient.post<ApiResponse<CategoryResponse>>(apiUrl, formData, { headers });
-  }
-
-  deleteCategory(apiUrl: string) {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-    });
-    return this.httpClient.delete(apiUrl, { headers });
   }
 }
