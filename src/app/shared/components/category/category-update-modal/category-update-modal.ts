@@ -18,7 +18,7 @@ export class CategoryUpdateModal {
   apiUrl = 'https://sellify-retail-cpbgdhhug0cafre0.italynorth-01.azurewebsites.net/api/categories';
 
   closeModal() {
-    const modalCont: any = document.querySelector('.modal-container')!;
+    const modalCont: any = document.querySelector('.update-modal-container')!;
     modalCont.style.display = 'none';
   }
 

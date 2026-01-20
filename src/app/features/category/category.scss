@@ -52,10 +52,12 @@ $shadow-xl:
   }
 }
 
-.modal-container {
+.create-modal-container {
   display: none;
 }
-
+.update-modal-container {
+  display: none;
+}
 // Category Section
 .category-section {
   padding: 4rem 2rem;

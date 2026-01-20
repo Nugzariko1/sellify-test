@@ -4,10 +4,11 @@ import { CategoryService } from '../../shared/services/category/category.service
 import { ApiResponse } from '../../shared/types/api.response';
 import { CategoryResponse } from '../../shared/types/category.models';
 import { CategoryCreateModal } from '../../shared/components/category/category-create-modal/category-create-modal';
+import { CategoryUpdateModal } from '../../shared/components/category/category-update-modal/category-update-modal';
 
 @Component({
   selector: 'app-category',
-  imports: [CommonModule, CategoryCreateModal],
+  imports: [CommonModule, CategoryCreateModal, CategoryUpdateModal],
   templateUrl: './category.html',
   styleUrl: './category.scss',
 })
@@ -32,12 +33,12 @@ export class Category {
   }
 
   openCreateModal() {
-    const modalCont: any = document.querySelector('.modal-container')!;
+    const modalCont: any = document.querySelector('.create-modal-container')!;
     modalCont.style.display = 'block';
   }
 
   openUpdateModal() {
-    const modalCont: any = document.querySelector('.modal-container')!;
+    const modalCont: any = document.querySelector('.update-modal-container')!;
     modalCont.style.display = 'block';
   }
 }
