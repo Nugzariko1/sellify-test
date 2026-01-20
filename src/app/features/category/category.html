@@ -32,10 +32,13 @@
         </div>
 
         <div class="category-info">
-          <h3>{{ cat.name }}</h3>
-          @if (cat.description) {
-            <p>{{ cat.description }}</p>
-          }
+          <div class="category-description-cont">
+            <h3>{{ cat.name }}</h3>
+            @if (cat.description) {
+              <p>{{ cat.description }}</p>
+            }
+          </div>
+          <button class="category-delete-btn">delete</button>
         </div>
       </div>
     } @empty {
