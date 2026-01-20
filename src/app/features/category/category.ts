@@ -14,6 +14,7 @@ import { CategoryUpdateModal } from '../../shared/components/category/category-u
 })
 export class Category {
   selectedCategory = signal<CategoryResponse | null>(null);
+
   categories = signal<ApiResponse<CategoryResponse[]>>({ data: [], message: '', success: false });
   apiUrl: string =
     'https://sellify-retail-cpbgdhhug0cafre0.italynorth-01.azurewebsites.net/api/categories';

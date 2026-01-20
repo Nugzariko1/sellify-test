@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { CategoryService } from '../../../services/category/category.service';
 import { CategoryResponse, CreateCategoryRequest } from '../../../types/category.models';
 import { CategoryForm } from '../category-form/category-form';
@@ -17,6 +17,8 @@ export class CategoryUpdateModal {
 
   apiUrl = 'https://sellify-retail-cpbgdhhug0cafre0.italynorth-01.azurewebsites.net/api/categories';
 
+  onDeleteSuccess = output<void>();
+
   closeModal() {
     const modalCont: any = document.querySelector('.update-modal-container')!;
     modalCont.style.display = 'none';
@@ -32,6 +34,7 @@ export class CategoryUpdateModal {
         console.log('Category deleted successfully');
         const modalCont: any = document.querySelector('.update-modal-container')!;
         modalCont.style.display = 'none';
+        this.onDeleteSuccess.emit();
       },
       error: (err) => {
         console.error('Delete failed:', err);

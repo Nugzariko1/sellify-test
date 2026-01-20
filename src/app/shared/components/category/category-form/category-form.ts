@@ -1,5 +1,6 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CategoryResponse } from '../../../types/category.models';
 
 @Component({
   selector: 'app-category-form',
@@ -15,7 +16,7 @@ export class CategoryForm {
   buttonText = input<string>('Confirm');
 
   // Data Input (for Edit mode)
-  initialData = input<any>(null);
+  initialData = input<CategoryResponse | null>(null);
 
   // Event Output
   submitted = output<{ formData: any; file: File | null }>();
@@ -32,13 +33,32 @@ export class CategoryForm {
   private selectedFile: File | null = null;
 
   constructor() {
-    // Reactively update form when initialData changes (Signal Effect)
-    // In Angular 21, we can use effect() or just patch in ngOnInit
+    // This effect runs every time initialData() signal changes
+    effect(() => {
+      const data = this.initialData();
+      if (data) {
+        this.categoryForm.patchValue({
+          name: data.name,
+          description: data.description,
+          slug: data.slug,
+          parentId: data.parentId,
+          isActive: data.isActive,
+        });
+        // Note: You cannot programmatically set a File input value for security reasons.
+        // We usually clear the validator for edit mode or handle it separately.
+        this.categoryForm.get('iconFile')?.clearValidators();
+        this.categoryForm.get('iconFile')?.updateValueAndValidity();
+      } else {
+        this.categoryForm.reset({ isActive: true });
+      }
+    });
   }
 
   ngOnInit() {
     if (this.initialData()) {
-      this.categoryForm.patchValue(this.initialData());
+      if (this.initialData() != null) {
+        this.categoryForm.patchValue(this.initialData()!);
+      }
     }
   }
 
