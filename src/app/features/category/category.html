@@ -3,7 +3,7 @@
     <app-category-create-modal></app-category-create-modal>
   </div>
   <header class="section-header">
-    <button (click)="openModal()">Create Category</button>
+    <button (click)="openCreateModal()">Create Category</button>
     <h2>Explore Categories</h2>
     <p>Find the best products across our curated collections</p>
   </header>
@@ -18,7 +18,7 @@
 
   <div class="category-grid">
     @for (cat of categories().data; track cat.id) {
-      <div class="category-card" [class.disabled]="!cat.isActive">
+      <div (click)="openUpdateModal()" class="category-card" [class.disabled]="!cat.isActive">
         <div class="image-wrapper">
           @if (cat.iconUrl) {
             <img [src]="cat.iconUrl" [alt]="cat.name" loading="lazy" />

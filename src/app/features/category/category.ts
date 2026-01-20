@@ -31,7 +31,12 @@ export class Category {
     });
   }
 
-  openModal() {
+  openCreateModal() {
+    const modalCont: any = document.querySelector('.modal-container')!;
+    modalCont.style.display = 'block';
+  }
+
+  openUpdateModal() {
     const modalCont: any = document.querySelector('.modal-container')!;
     modalCont.style.display = 'block';
   }
