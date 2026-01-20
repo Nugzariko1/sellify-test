@@ -3,11 +3,11 @@ import { Component, signal } from '@angular/core';
 import { CategoryService } from '../../shared/services/category/category.service';
 import { ApiResponse } from '../../shared/types/api.response';
 import { CategoryResponse } from '../../shared/types/category.models';
-import { CategoryModal } from '../../shared/components/category-modal/category-modal';
+import { CategoryCreateModal } from '../../shared/components/category/category-create-modal/category-create-modal';
 
 @Component({
   selector: 'app-category',
-  imports: [CommonModule, CategoryModal],
+  imports: [CommonModule, CategoryCreateModal],
   templateUrl: './category.html',
   styleUrl: './category.scss',
 })

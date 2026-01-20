@@ -1,0 +1,71 @@
+<div class="login-container">
+  <form [formGroup]="categoryForm" (ngSubmit)="submit()" class="custom-form">
+    <header>
+      <h2>{{ title() }}</h2>
+    </header>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          formControlName="name"
+          placeholder="enter category name"
+          [class.error]="categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          id="description"
+          formControlName="description"
+          placeholder="enter description"
+          [class.error]="
+            categoryForm.get('description')?.invalid && categoryForm.get('description')?.touched
+          "
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="slug">Slug</label>
+      <input
+        id="slug"
+        formControlName="slug"
+        placeholder="enter slug"
+        [class.error]="categoryForm.get('slug')?.invalid && categoryForm.get('slug')?.touched"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="parentId">Parent category</label>
+      <input id="parentId" formControlName="parentId" placeholder="enter parentId" />
+    </div>
+
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="isActive" formControlName="isActive" />
+      <label for="isActive">Is Active</label>
+    </div>
+
+    <div class="form-group">
+      <label for="iconFile">Category Icon</label>
+      <input
+        id="iconFile"
+        type="file"
+        (change)="onFileChange($event)"
+        [class.error]="
+          categoryForm.get('iconFile')?.invalid && categoryForm.get('iconFile')?.touched
+        "
+      />
+
+      @if (categoryForm.get('iconFile')?.invalid && categoryForm.get('iconFile')?.touched) {
+        <span class="error-text">Please select a valid file.</span>
+      }
+    </div>
+
+    <button type="submit" [disabled]="categoryForm.invalid" class="confirm-modal-btn">
+      {{ buttonText() }}
+    </button>
+  </form>
+</div>

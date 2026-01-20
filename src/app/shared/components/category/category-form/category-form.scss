@@ -1,0 +1,161 @@
+.modal-overlay {
+  position: fixed; // სჯობს fixed, რომ სკროლის დროსაც ადგილზე დარჩეს
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #ffffff;
+  width: 100%;
+  max-width: 550px;
+  max-height: 90vh; // ეკრანზე რომ დაეტიოს
+  overflow-y: auto; // თუ ფორმა გრძელია, გაჩნდება სკროლი
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h2 {
+      margin: 0;
+      color: #333;
+      font-size: 24px;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+  }
+}
+
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // სახელი და აღწერა ერთ ხაზზე
+    gap: 15px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      font-weight: 600;
+      font-size: 13px;
+      color: #444;
+    }
+
+    input:not([type='checkbox']) {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+      }
+
+      &.error {
+        border-color: #dc3545;
+        background-color: #fff8f8;
+      }
+    }
+
+    span {
+      // ერორ მესიჯი
+      color: #dc3545;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
+
+  .checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+  }
+}
+
+.confirm-modal-btn {
+  width: 100% !important; // ღილაკი დაიკავებს სრულ სიგანეს
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #f8f9fa !important;
+  color: #666 !important;
+  border: none;
+  width: auto !important;
+  padding: 8px 15px !important;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    background: #e2e6ea !important;
+    color: #333 !important;
+  }
+}
+
+// ტელეფონებისთვის
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+}
