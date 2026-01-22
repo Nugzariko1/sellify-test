@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { CategoryService } from '../../../services/category/category.service';
 import { CreateCategoryRequest } from '../../../types/category.models';
 import { CategoryForm } from '../category-form/category-form';
@@ -16,6 +16,8 @@ export class CategoryCreateModal {
   categoryData = signal<any>(null);
 
   apiUrl = 'https://sellify-retail-cpbgdhhug0cafre0.italynorth-01.azurewebsites.net/api/categories';
+
+  onSuccessEmit = output<void>();
 
   closeModal() {
     const modalCont: any = document.querySelector('.create-modal-container')!;
@@ -39,6 +41,7 @@ export class CategoryCreateModal {
       next: (response) => {
         console.log('Success:', response);
         this.closeModal();
+        this.onSuccessEmit.emit();
       },
       error: (err) => console.error('Failed:', err),
     });

@@ -1,6 +1,6 @@
 <section class="category-section">
   <div class="create-modal-container">
-    <app-category-create-modal></app-category-create-modal>
+    <app-category-create-modal (onSuccessEmit)="getCategories()"> </app-category-create-modal>
   </div>
   <div class="update-modal-container">
     <app-category-update-modal

@@ -1,7 +1,7 @@
 <div class="modal-overlay">
   <div class="modal-content">
     <app-category-form
-      [title]="categoryData() ? 'Edit Category' : 'Create Category'"
+      [title]="'Create Category'"
       [buttonText]="'Confirm'"
       [initialData]="categoryData()"
       (submitted)="handleFormSubmit($event)"
